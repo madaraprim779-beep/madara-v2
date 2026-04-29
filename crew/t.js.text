@@ -1,0 +1,72 @@
+/**
+ * MADARA-V2 OFFICIAL CODE
+ * Identité : 『мŖ』MÄĐÄŖÄ
+ */
+
+const { smsg, getGroupAdmins, formatp, p_gen } = require('./utils/DigixV'); // Assure-toi que le chemin est correct
+const fs = require('fs');
+const chalk = require('chalk');
+
+module.exports = async (client, m, chatUpdate, store) => {
+    try {
+        const { type, args, q, from, body, sender, pushname, isGroup, isAdmins } = m;
+        const prefix = '.'; // Ton préfixe
+        const command = body.startsWith(prefix) ? body.slice(prefix.length).trim().split(/\s+/).shift().toLowerCase() : '';
+
+        // --- SECTION COMMANDES ---
+        
+        switch (command) {
+
+            // COMMANDE CREW / INFOS
+            case 'crew':
+            case 'madara':
+                const crewMsg = `🌑 *MADARA-V2 : L'AVÈNEMENT* 🌑\n\n` +
+                                `*"Dans ce monde, là où il y a de la lumière, il y a aussi des ombres."*\n\n` +
+                                `👤 *Identité :* 『мŖ』MÄĐÄŖÄ-V2 🩸\n` +
+                                `📜 *Statut :* Légende Ressuscitée\n` +
+                                `🌀 *Pouvoir :* Tsukuyomi Infini Actif\n\n` +
+                                `--- ⚔️ --- \n\n` +
+                                `🛡️ *Système :* Bot Élite Opérationnel\n` +
+                                `📡 *Réseau :* Déploiement Cloud Actif\n` +
+                                `⚔️ *Mission :* Ordre et Domination\n\n` +
+                                `*« Le monde sera plongé dans mon rêve éternel. »*`;
+
+                await client.sendMessage(from, { 
+                    image: { url: './assets/madara.jpg' }, 
+                    caption: crewMsg 
+                }, { quoted: m });
+            break;
+
+            // COMMANDE AUDIO (SON)
+            case 'son':
+            case 'audio':
+                if (!fs.existsSync('./assets/madara_theme.mp3')) return m.reply('❌ Fichier audio manquant dans le dossier assets.');
+                await client.sendMessage(from, { 
+                    audio: { url: './assets/madara_theme.mp3' }, 
+                    mimetype: 'audio/mp4', 
+                    ptt: true 
+                }, { quoted: m });
+            break;
+
+            // COMMANDE STICKER (IMAGE)
+            case 's':
+            case 'sticker':
+                if (/image/.test(type)) {
+                    let media = await client.downloadAndSaveMediaMessage(m);
+                    await client.sendMessage(from, { sticker: { url: media } }, { quoted: m });
+                    fs.unlinkSync(media); // Supprime le fichier temporaire
+                } else {
+                    m.reply(`Envoie une image avec la légende ${prefix}sticker`);
+                }
+            break;
+
+            default:
+                if (body.startsWith(prefix) && command) {
+                    console.log(chalk.redBright(`[ERREUR] Commande inconnue : ${command}`));
+                }
+        }
+
+    } catch (err) {
+        console.log(chalk.redBright(err));
+    }
+};
