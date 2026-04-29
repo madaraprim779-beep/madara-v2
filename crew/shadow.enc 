@@ -1,0 +1,19 @@
+case 'crew':
+case 'madara':
+    const crewMsg = `🌑 *MADARA-V2 : L'AVÈNEMENT* 🌑\n\n` +
+                    `*"Dans ce monde, là où il y a de la lumière, il y a aussi des ombres."*\n\n` +
+                    `👤 **Identité :** 『мŖ』MÄĐÄŖÄ-V2 🩸\n` +
+                    `📜 **Statut :** Légende Ressuscitée\n` +
+                    `🌀 **Pouvoir :** Tsukuyomi Infini Actif\n\n` +
+                    `--- ⚔️ --- \n\n` +
+                    `🛡️ **Système :** Bot Élite Opérationnel\n` +
+                    `📡 **Réseau :** Déploiement Cloud 24h/24\n` +
+                    `⚔️ **Mission :** Ordre et Domination\n\n` +
+                    `*« Le monde sera plongé dans mon rêve éternel. »*`;
+
+    // Envoi du message avec ton image de profil (si tu as mis madara.jpg dans assets)
+    await client.sendMessage(from, { 
+        image: { url: './assets/madara.jpg' }, 
+        caption: crewMsg 
+    }, { quoted: m });
+break;
