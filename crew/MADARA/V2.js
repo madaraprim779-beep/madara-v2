@@ -15,7 +15,7 @@ export default async (client, m, chatUpdate, store) => {
             case 'menu': {
                 const messageMenu = `
 ╔════════════════════╗
-    *${config.madara_solitaire}*
+     *${config.BOT_NAME}*
 ╚════════════════════╝
 
 👤 *Proprio* : ${config.OWNER_NAME}
