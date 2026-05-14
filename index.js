@@ -5,4 +5,3 @@ import handleIncomingMessage from './events/messageHandler.js'
     await connectToWhatsapp(handleIncomingMessage)
     console.log('established !')
 })()
-
