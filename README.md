@@ -1,1 +1,1 @@
-# madara-v2
+# madara-v2.js
